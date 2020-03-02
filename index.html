@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZVue</title>
+</head>
+<body>
+    <div id="app">
+        <h1>探究VueMVVM双向数据绑定实现原理</h1>
+        <h2>{{person.name}} -- {{person.age}}</h2>
+        <h3>{{person.fav}}</h3>
+        <h3>{{msg}}</h3>
+        <div v-text='msg'></div>
+        <div v-text='person.name'></div>
+        <div v-html='htmlStr'></div>
+        <input type="text" v-model='msg'>
+        <button v-on:click="handleClick">v-on:click</button>
+        <button @click="handleClick">@click</button>
+        <!-- <a v-bind:href="https://www.bilibili.com/video/av80611222?p=3">v-bind:href</a> -->
+    </div>
+    <script src="./ZVue.js"></script>
+    <script>
+        let vm = new ZVue({
+            el: '#app',
+            data: {
+                person: {
+                    name: 'zy',
+                    age: 18,
+                    fav: '美女'
+                },
+                msg: '插值',
+                htmlStr: '<h1>这是一个html</h1>'
+            },
+            methods: {
+                handleClick() {
+                    console.log('点击了')
+                    this.$data.person.name = 'zhangyun'
+                }
+            },
+        })
+    </script>
+</body>
+</html>
